@@ -3,29 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>TSITSO MAFANTIRI – Environmental Scientist</title>
-
-<!-- Viewport for mobile -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Font Awesome (icons) -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-/lY9f7yVxGZ8iW1b+FqM3QeK4mTjN+XgZc5DkzE5vB5H4PZpA0a1Y3/6u2w4hOZtLrI2nV7l5fJf8C4+6l9sA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-/lY9f7yVxGZ8iW1b+FqM3QeK4mTjN+XgZc5DkzE5vB5H4PZpA0a1Y3/6u2w4hOZtLrI2nV7l5fJf8C4+6l9sA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 <style>
-/* -------------------------------------------------------------
-   Variables & Theme Settings
-------------------------------------------------------------- */
 :root {
-    /* Light theme defaults */
     --bg-color: #f8fafc;
     --text-color: #1a202c;
-    --accent-color: #3182ce;      /* blue */
+    --accent-color: #3182ce;
     --header-bg: #fff;
     --nav-link-hover: #e2e8f0;
-
-    /* Dark theme overrides – will be set via body.dark selector */
 }
 
 body.dark {
@@ -36,12 +23,7 @@ body.dark {
     --nav-link-hover: #4a5568;
 }
 
-/* -------------------------------------------------------------
-   Global Resets & Typography
-------------------------------------------------------------- */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -63,92 +45,143 @@ a {
     text-decoration: none;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
     text-decoration: underline;
 }
 
-/* -------------------------------------------------------------
-   Header & Navigation
-------------------------------------------------------------- */
+/* Header & Navigation */
 .site-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: var(--header-bg);
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 1.5rem;
     border-bottom: 2px solid var(--accent-color);
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 100;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .logo {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: var(--accent-color);
 }
 
-#theme-toggle {
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#theme-toggle, #menu-toggle {
     background: none;
-    border: none;
+    border: 2px solid var(--accent-color);
     cursor: pointer;
     font-size: 1.25rem;
-    color: var(--text-color);
+    color: var(--accent-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all .3s ease;
+}
+
+#theme-toggle:hover, #menu-toggle:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.main-nav {
+    width: 100%;
+    order: 3;
+    margin-top: 1rem;
 }
 
 .main-nav ul {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-nav li {
+    margin: 0;
 }
 
 .main-nav a {
-    padding: 0.5rem 0;
-    transition: color .2s ease, border-bottom .2s ease;
-    position: relative;
-}
-
-.main-nav a::after {
-    content: '';
+    padding: 0.6rem 1.2rem;
+    transition: all .3s ease;
     display: block;
-    height: 2px;
-    background: var(--accent-color);
-    width: 0%;
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    transition: width .3s ease;
+    border-radius: 6px;
+    font-weight: 500;
+    border: 2px solid transparent;
 }
 
-.main-nav a:hover::after,
-.main-nav a:focus::after {
-    width: 100%;
+.main-nav a:hover, .main-nav a:focus {
+    background-color: var(--nav-link-hover);
+    text-decoration: none;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
 }
 
-/* Mobile hamburger toggle – optional */
+.main-nav a.active {
+    background-color: var(--accent-color);
+    color: #fff !important;
+    border-color: var(--accent-color);
+}
+
+/* Mobile Navigation */
 @media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease;
+    }
+
+    .main-nav.active {
+        max-height: 600px;
+    }
+
     .main-nav ul {
         flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 0;
         background-color: var(--header-bg);
-        position: absolute;
-        top: 100%;
-        right: 0;
-        padding: 1rem;
-        border: 1px solid var(--accent-color);
-        display: none; /* Hidden by default */
-    }
-
-    .main-nav.active ul {
-        display: flex;
+        border-top: 1px solid var(--nav-link-hover);
     }
 }
 
-/* -------------------------------------------------------------
-   Main Content Sections
-------------------------------------------------------------- */
+@media (min-width: 769px) {
+    .site-header {
+        flex-wrap: nowrap;
+    }
+
+    .main-nav {
+        width: auto;
+        order: 0;
+        flex: 1;
+        margin-left: 2rem;
+        margin-top: 0;
+    }
+
+    .main-nav ul {
+        justify-content: flex-start;
+    }
+}
+
+/* Main Content */
 .site-content {
     max-width: 960px;
     margin: auto;
@@ -166,9 +199,7 @@ h2 {
     color: var(--accent-color);
 }
 
-/* -------------------------------------------------------------
-   Lists & Columns
-------------------------------------------------------------- */
+/* Lists & Columns */
 .list-columns {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -181,9 +212,7 @@ h2 {
     color: var(--nav-link-hover);
 }
 
-/* -------------------------------------------------------------
-   Job & Project Cards
-------------------------------------------------------------- */
+/* Job Cards */
 .job article {
     background-color: #fff;
     border-radius: 4px;
@@ -197,9 +226,7 @@ body.dark .job article {
     color: var(--text-color);
 }
 
-/* -------------------------------------------------------------
-   Certification Cards
-------------------------------------------------------------- */
+/* Certification Cards */
 .certification {
     background-color: #fff;
     border-radius: 4px;
@@ -241,9 +268,7 @@ body.dark .certification {
     font-style: italic;
 }
 
-/* -------------------------------------------------------------
-   Skill Groups
-------------------------------------------------------------- */
+/* Skill Groups */
 .skill-group h3 {
     font-size: 1.1rem;
     color: var(--accent-color);
@@ -254,24 +279,20 @@ body.dark .certification {
     margin: 0;
 }
 
-/* -------------------------------------------------------------
-   Contact Section
-------------------------------------------------------------- */
+/* Contact Section */
 .contact-section {
     background: var(--accent-color);
     color: #fff;
     text-align: center;
     padding: 2rem 1.5rem;
+    border-radius: 8px;
 }
 
-.contact-section a,
-.contact-section i {
+.contact-section a, .contact-section i {
     color: #fff;
 }
 
-/* -------------------------------------------------------------
-   Portfolio Links
-------------------------------------------------------------- */
+/* Portfolio Links */
 .portfolio-links {
     display: flex;
     flex-wrap: wrap;
@@ -301,9 +322,7 @@ body.dark .certification {
     font-size: 1.2rem;
 }
 
-/* -------------------------------------------------------------
-   Footer
-------------------------------------------------------------- */
+/* Footer */
 .site-footer {
     text-align: center;
     padding: 1.5rem 1rem;
@@ -338,9 +357,7 @@ body.dark .certification {
     font-size: 1.1rem;
 }
 
-/* -------------------------------------------------------------
-   Fade‑in Animations (IntersectionObserver)
-------------------------------------------------------------- */
+/* Animations */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -352,18 +369,14 @@ body.dark .certification {
     transform: none;
 }
 
-/* -------------------------------------------------------------
-   Responsive Tweaks
-------------------------------------------------------------- */
+/* Responsive */
 @media (max-width: 600px) {
     .site-header {
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 0.75rem 1rem;
     }
-
-    .main-nav ul {
-        flex-direction: column;
-        width: 100%;
+    
+    .logo {
+        font-size: 1.2rem;
     }
 }
 </style>
@@ -373,37 +386,41 @@ body.dark .certification {
 <header class="site-header">
   <div class="logo">TSITSO MAFANTIRI</div>
 
-  <!-- Theme toggle button -->
-  <button id="theme-toggle" aria-label="Toggle theme">
-    <i class="fa-solid fa-moon"></i>
-  </button>
+  <div class="header-controls">
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
 
-  <nav class="main-nav">
+    <button id="menu-toggle" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <nav class="main-nav" id="main-nav">
     <ul>
-      <li><a href="#summary">Summary</a></li>
-      <li><a href="#competencies">Core Competencies</a></li>
-      <li><a href="#skills">Technical Skills</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#affiliations">Affiliations</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#summary" class="nav-link">Summary</a></li>
+      <li><a href="#competencies" class="nav-link">Competencies</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#affiliations" class="nav-link">Affiliations</a></li>
     </ul>
   </nav>
 </header>
 
 <main class="site-content">
-  <!-- Contact section -->
   <section id="contact" class="section contact-section">
     <h2>Contact Me</h2>
-    <p>Email: <a href="/cdn-cgi/l/email-protection#d3bbaab7a1bcbeb2b5b2bda793b4beb2babffdb0bcbe"><span class="__cf_email__" data-cfemail="157d6c71677a787473747b61557278747c793b767a78">[email&#160;protected]</span></a></p>
+    <p>Email: <a href="mailto:hydromafant@gmail.com">hydromafant@gmail.com</a></p>
     <p>LinkedIn: <a href="https://linkedin.com/in/tsitso-mafantiri-670395124" target="_blank">
       <i class="fa-brands fa-linkedin"></i> tsitso-mafantiri
     </a></p>
   </section>
 
-  <!-- Summary -->
   <section id="summary" class="section fade-in">
     <h2>Professional Summary</h2>
     <p>
@@ -411,7 +428,6 @@ body.dark .certification {
     </p>
   </section>
 
-  <!-- Core Competencies -->
   <section id="competencies" class="section fade-in">
     <h2>Core Competencies</h2>
     <ul class="list-columns">
@@ -427,7 +443,6 @@ body.dark .certification {
     </ul>
   </section>
 
-  <!-- Technical Skills -->
   <section id="skills" class="section fade-in">
     <h2>Technical Skills & Endorsements</h2>
 
@@ -462,7 +477,6 @@ body.dark .certification {
     </div>
   </section>
 
-  <!-- Certifications -->
   <section id="certifications" class="section fade-in">
     <h2>Licenses & Certifications</h2>
     
@@ -605,7 +619,6 @@ body.dark .certification {
     </article>
   </section>
 
-  <!-- Experience -->
   <section id="experience" class="section fade-in">
     <h2>Professional Experience</h2>
 
@@ -631,7 +644,6 @@ body.dark .certification {
     </article>
   </section>
 
-  <!-- Projects -->
   <section id="projects" class="section fade-in">
     <h2>Consultancy & Project Experience</h2>
     <ul>
@@ -641,23 +653,6 @@ body.dark .certification {
     </ul>
   </section>
 
-  <!-- Education -->
-  <section id="education" class="section fade-in">
-    <h2>Education</h2>
-    <p>BSc in Environmental Science – University of X (Year)</p>
-  </section>
-
-  <!-- Affiliations & Interests -->
-  <section id="affiliations" class="section fade-in">
-    <h2>Professional Affiliations & Interests</h2>
-    <ul>
-      <li>Conservation Science & Environmental Policy</li>
-      <li>Geospatial Technologies & Earth Observation</li>
-      <li>Climate Change, Ecosystem Services, and Sustainable Development</li>
-    </ul>
-  </section>
-
-  <!-- Proof of Work -->
   <section id="portfolio" class="section fade-in">
     <h2>Portfolio & Proof of Work</h2>
     <div class="portfolio-links">
@@ -672,6 +667,20 @@ body.dark .certification {
       </a>
     </div>
   </section>
+
+  <section id="education" class="section fade-in">
+    <h2>Education</h2>
+    <p>BSc in Environmental Science – University of X (Year)</p>
+  </section>
+
+  <section id="affiliations" class="section fade-in">
+    <h2>Professional Affiliations & Interests</h2>
+    <ul>
+      <li>Conservation Science & Environmental Policy</li>
+      <li>Geospatial Technologies & Earth Observation</li>
+      <li>Climate Change, Ecosystem Services, and Sustainable Development</li>
+    </ul>
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -683,19 +692,15 @@ body.dark .certification {
   <p>&copy; 2026 TSITSO MAFANTIRI. All rights reserved.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// -------------------------------------------------------------
-// Theme toggle logic (light/dark)
-// -------------------------------------------------------------
+<script>
+// Theme toggle
 const themeToggleBtn = document.getElementById('theme-toggle');
 const currentTheme = localStorage.getItem('theme') || 'light';
 
 function applyTheme(theme) {
-    if (theme === 'dark') {
-        document.body.classList.add('dark');
-    } else {
-        document.body.classList.remove('dark');
-    }
+    document.body.classList.toggle('dark', theme === 'dark');
+    const icon = themeToggleBtn.querySelector('i');
+    icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 }
 
 applyTheme(currentTheme);
@@ -706,9 +711,71 @@ themeToggleBtn.addEventListener('click', () => {
     localStorage.setItem('theme', newTheme);
 });
 
-// -------------------------------------------------------------
-// IntersectionObserver for fade‑in sections
-// -------------------------------------------------------------
+// Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const mainNav = document.getElementById('main-nav');
+
+menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+    const icon = menuToggle.querySelector('i');
+    icon.className = mainNav.classList.contains('active') ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+});
+
+// Close mobile menu on link click
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            mainNav.classList.remove('active');
+            menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+        }
+    });
+});
+
+// Active nav link based on scroll
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPos = window.scrollY + 150;
+
+    sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        
+        if (scrollPos >= top && scrollPos < top + height) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNavLink);
+window.addEventListener('load', updateActiveNavLink);
+
+// Smooth scroll with offset
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
+        if (target) {
+            const headerHeight = document.querySelector('.site-header').offsetHeight;
+            const targetPos = target.offsetTop - headerHeight - 10;
+            
+            window.scrollTo({
+                top: targetPos,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Fade-in animations
 const observerOptions = {
     root: null,
     threshold: 0.1
@@ -718,7 +785,7 @@ function revealSection(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // stop observing after animation
+            observer.unobserve(entry.target);
         }
     });
 }
@@ -726,4 +793,11 @@ function revealSection(entries, observer) {
 const sections = document.querySelectorAll('.fade-in');
 
 if ('IntersectionObserver' in window) {
-    const observer = new I
+    const observer = new IntersectionObserver(revealSection, observerOptions);
+    sections.forEach(section => observer.observe(section));
+} else {
+    sections.forEach(sec => sec.classList.add('visible'));
+}
+</script>
+</body>
+</html>
