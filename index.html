@@ -214,6 +214,11 @@ h2 {
     color: var(--accent-color);
 }
 
+h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
 /* Lists & Columns */
 .list-columns {
     display: grid;
@@ -284,6 +289,10 @@ body.dark .certification {
 }
 
 /* Skill Groups */
+.skill-group {
+    margin-bottom: 1.5rem;
+}
+
 .skill-group h3 {
     font-size: 1.1rem;
     color: var(--accent-color);
@@ -291,7 +300,7 @@ body.dark .certification {
 }
 
 .skill-group p {
-    margin: 0;
+    margin: 0 0 1rem 0;
 }
 
 /* Contact Section */
@@ -303,8 +312,16 @@ body.dark .certification {
     border-radius: 8px;
 }
 
+.contact-section h2 {
+    color: #fff;
+}
+
 .contact-section a, .contact-section i {
     color: #fff;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
 }
 
 /* Portfolio Links */
@@ -372,18 +389,6 @@ body.dark .certification {
     font-size: 1.1rem;
 }
 
-/* Animations */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .6s ease, transform .6s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: none;
-}
-
 /* Responsive */
 @media (max-width: 600px) {
     .site-header {
@@ -392,6 +397,11 @@ body.dark .certification {
     
     .logo {
         font-size: 1.2rem;
+    }
+    
+    .profile-photo {
+        width: 40px;
+        height: 40px;
     }
 }
 </style>
@@ -433,20 +443,20 @@ body.dark .certification {
 <main class="site-content">
   <section id="contact" class="section contact-section">
     <h2>Contact Me</h2>
-    <p>Email: <a href="/cdn-cgi/l/email-protection#fd9584998f92909c9b9c9389bd9a909c9491d39e9290"><span class="__cf_email__" data-cfemail="670f1e0315080a060106091327000a060e0b4904080a">[email&#160;protected]</span></a></p>
+    <p>Email: <a href="mailto:hydromafant@gmail.com">hydromafant@gmail.com</a></p>
     <p>LinkedIn: <a href="https://linkedin.com/in/tsitso-mafantiri-670395124" target="_blank">
       <i class="fa-brands fa-linkedin"></i> tsitso-mafantiri
     </a></p>
   </section>
 
-  <section id="summary" class="section fade-in">
+  <section id="summary" class="section">
     <h2>Professional Summary</h2>
     <p>
       Environmental Scientist and Senior Conservation Officer with strong expertise in Geospatial Information Systems (GIS), Remote Sensing (RS), Earth Observation (EO), cloud computing, and environmental data science. Experienced in applying machine learning, statistical analysis, and satellite‑based analytics to conservation planning, rangeland management, air quality, water resources, and climate‑related assessments.
     </p>
   </section>
 
-  <section id="competencies" class="section fade-in">
+  <section id="competencies" class="section">
     <h2>Core Competencies</h2>
     <ul class="list-columns">
       <li>Geospatial Data Science & GIS</li>
@@ -461,7 +471,7 @@ body.dark .certification {
     </ul>
   </section>
 
-  <section id="skills" class="section fade-in">
+  <section id="skills" class="section">
     <h2>Technical Skills & Endorsements</h2>
 
     <div class="skill-group">
@@ -495,7 +505,7 @@ body.dark .certification {
     </div>
   </section>
 
-  <section id="certifications" class="section fade-in">
+  <section id="certifications" class="section">
     <h2>Licenses & Certifications</h2>
     
     <article class="certification">
@@ -637,7 +647,7 @@ body.dark .certification {
     </article>
   </section>
 
-  <section id="experience" class="section fade-in">
+  <section id="experience" class="section">
     <h2>Professional Experience</h2>
 
     <article class="job">
@@ -662,7 +672,7 @@ body.dark .certification {
     </article>
   </section>
 
-  <section id="projects" class="section fade-in">
+  <section id="projects" class="section">
     <h2>Consultancy & Project Experience</h2>
     <ul>
       <li>Delivered geospatial and EO‑based analyses for environmental monitoring and decision support.</li>
@@ -671,7 +681,7 @@ body.dark .certification {
     </ul>
   </section>
 
-  <section id="portfolio" class="section fade-in">
+  <section id="portfolio" class="section">
     <h2>Portfolio & Proof of Work</h2>
     <div class="portfolio-links">
       <a href="https://github.com/ocaes" target="_blank" class="portfolio-link">
@@ -686,12 +696,12 @@ body.dark .certification {
     </div>
   </section>
 
-  <section id="education" class="section fade-in">
+  <section id="education" class="section">
     <h2>Education</h2>
-    <p>BSc in Environmental Science – University of X (Year)</p>
+    <p><strong>BSc in Environmental Science</strong> – University of X (Year)</p>
   </section>
 
-  <section id="affiliations" class="section fade-in">
+  <section id="affiliations" class="section">
     <h2>Professional Affiliations & Interests</h2>
     <ul>
       <li>Conservation Science & Environmental Policy</li>
@@ -710,7 +720,7 @@ body.dark .certification {
   <p>&copy; 2026 TSITSO MAFANTIRI. All rights reserved.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Theme toggle
 const themeToggleBtn = document.getElementById('theme-toggle');
 const currentTheme = localStorage.getItem('theme') || 'light';
@@ -792,22 +802,6 @@ navLinks.forEach(link => {
         }
     });
 });
-
-// Fade-in animations
-const observerOptions = {
-    root: null,
-    threshold: 0.1
-};
-
-function revealSection(entries, observer) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
-}
-
-const sections = document.querySelectorAll('.fade-in');
-
-if ('IntersectionObserver' i
+</script>
+</body>
+</html>
