@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TSITSO MAFANTIRI – Environmental Scientist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-/lY9f7yVxGZ8iW1b+FqM3QeK4mTjN+XgZc5DkzE5vB5H4PZpA0a1Y3/6u2w4hOZtLrI2nV7l5fJf8C4+6l9sA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<style>
+:root {
+    --bg-color: #f8fafc;
+    --text-color: #1a202c;
+    --accent-color: #3182ce;
+    --header-bg: #fff;
+    --nav-link-hover: #e2e8f0;
+}
+
+body.dark {
+    --bg-color: #1a202c;
+    --text-color: #edf2f7;
+    --accent-color: #63b3ed;
+    --header-bg: #2d3748;
+    --nav-link-hover: #4a5568;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color .3s ease, color .3s ease;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}
+
+/* Header & Navigation */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--header-bg);
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#theme-toggle, #menu-toggle {
+    background: none;
+    border: 2px solid var(--accent-color);
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: var(--accent-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all .3s ease;
+}
+
+#theme-toggle:hover, #menu-toggle:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.main-nav {
+    width: 100%;
+    order: 3;
+    margin-top: 1rem;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-nav li {
+    margin: 0;
+}
+
+.main-nav a {
+    padding: 0.6rem 1.2rem;
+    transition: all .3s ease;
+    display: block;
+    border-radius: 6px;
+    font-weight: 500;
+    border: 2px solid transparent;
+}
+
+.main-nav a:hover, .main-nav a:focus {
+    background-color: var(--nav-link-hover);
+    text-decoration: none;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.main-nav a.active {
+    background-color: var(--accent-color);
+    color: #fff !important;
+    border-color: var(--accent-color);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease;
+    }
+
+    .main-nav.active {
+        max-height: 600px;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 0;
+        background-color: var(--header-bg);
+        border-top: 1px solid var(--nav-link-hover);
+    }
+}
+
+@media (min-width: 769px) {
+    .site-header {
+        flex-wrap: nowrap;
+    }
+
+    .main-nav {
+        width: auto;
+        order: 0;
+        flex: 1;
+        margin-left: 2rem;
+        margin-top: 0;
+    }
+
+    .main-nav ul {
+        justify-content: flex-start;
+    }
+}
+
+/* Main Content */
+.site-content {
+    max-width: 960px;
+    margin: auto;
+    padding: 1.5rem;
+}
+
+.section {
+    margin-bottom: 2.5rem;
+    padding: 1rem 0;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: .75rem;
+    color: var(--accent-color);
+}
+
+/* Lists & Columns */
+.list-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem 1rem;
+    padding-left: 1rem;
+}
+
+.job .period {
+    font-size: .9rem;
+    color: var(--nav-link-hover);
+}
+
+/* Job Cards */
+.job article {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+body.dark .job article {
+    background-color: #2d3748;
+    color: var(--text-color);
+}
+
+/* Certification Cards */
+.certification {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--accent-color);
+}
+
+body.dark .certification {
+    background-color: #2d3748;
+    color: var(--text-color);
+}
+
+.certification h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+}
+
+.certification .issuer {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-bottom: 0.25rem;
+}
+
+.certification .period {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--nav-link-hover);
+    margin-bottom: 0.25rem;
+}
+
+.certification .credential {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--nav-link-hover);
+    font-style: italic;
+}
+
+/* Skill Groups */
+.skill-group h3 {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: .25rem;
+}
+
+.skill-group p {
+    margin: 0;
+}
+
+/* Contact Section */
+.contact-section {
+    background: var(--accent-color);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+}
+
+.contact-section a, .contact-section i {
+    color: #fff;
+}
+
+/* Portfolio Links */
+.portfolio-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.portfolio-link {
+    background-color: var(--accent-color);
+    color: #fff !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform .2s ease, box-shadow .2s ease;
+    font-weight: 500;
+}
+
+.portfolio-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+.portfolio-link i {
+    font-size: 1.2rem;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: var(--header-bg);
+    border-top: 1px solid var(--accent-color);
+    font-size: .9rem;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-media a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.social-media a:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.social-media i {
+    font-size: 1.1rem;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .site-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+}
+</style>
+</head>
+
+<body class="light">
+<header class="site-header">
+  <div class="header-left">
+    <img src="fanta.jpg" alt="Tsitso Mafantiri" class="profile-photo">
+    <div class="logo">TSITSO MAFANTIRI</div>
+  </div>
+
+  <div class="header-controls">
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <button id="menu-toggle" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <nav class="main-nav" id="main-nav">
+    <ul>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#summary" class="nav-link">Summary</a></li>
+      <li><a href="#competencies" class="nav-link">Competencies</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#affiliations" class="nav-link">Affiliations</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="site-content">
+  <section id="contact" class="section contact-section">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="/cdn-cgi/l/email-protection#fd9584998f92909c9b9c9389bd9a909c9491d39e9290"><span class="__cf_email__" data-cfemail="670f1e0315080a060106091327000a060e0b4904080a">[email&#160;protected]</span></a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/tsitso-mafantiri-670395124" target="_blank">
+      <i class="fa-brands fa-linkedin"></i> tsitso-mafantiri
+    </a></p>
+  </section>
+
+  <section id="summary" class="section fade-in">
+    <h2>Professional Summary</h2>
+    <p>
+      Environmental Scientist and Senior Conservation Officer with strong expertise in Geospatial Information Systems (GIS), Remote Sensing (RS), Earth Observation (EO), cloud computing, and environmental data science. Experienced in applying machine learning, statistical analysis, and satellite‑based analytics to conservation planning, rangeland management, air quality, water resources, and climate‑related assessments.
+    </p>
+  </section>
+
+  <section id="competencies" class="section fade-in">
+    <h2>Core Competencies</h2>
+    <ul class="list-columns">
+      <li>Geospatial Data Science & GIS</li>
+      <li>Remote Sensing & Earth Observation (EO)</li>
+      <li>Cloud Computing for EO (Google Earth Engine)</li>
+      <li>Machine Learning (Python & R)</li>
+      <li>Environmental & Conservation Planning</li>
+      <li>Rangeland Inventory & Management</li>
+      <li>Data Science & Statistical Analysis</li>
+      <li>Cartography & Spatial Visualization</li>
+      <li>Project Management & Strategic Planning</li>
+    </ul>
+  </section>
+
+  <section id="skills" class="section fade-in">
+    <h2>Technical Skills & Endorsements</h2>
+
+    <div class="skill-group">
+      <h3>Programming</h3>
+      <p>Python (Programming Language), R, JavaScript (GEE)</p>
+    </div>
+
+    <div class="skill-group">
+      <h3>Platforms & Tools</h3>
+      <p>Google Earth Engine, RStudio, QGIS, ArcGIS, Microsoft Office, Microsoft Word, Data Dashboards, Visualization Tools</p>
+    </div>
+
+    <div class="skill-group">
+      <h3>Methods</h3>
+      <p>Machine Learning, Time‑Series Analysis, Spatial Modeling, Cloud Computing</p>
+    </div>
+
+    <div class="skill-group">
+      <h3>Data Types</h3>
+      <p>Satellite Imagery, Geospatial Vector/Raster Data, Environmental Datasets</p>
+    </div>
+
+    <div class="skill-group">
+      <h3>Core Expertise (Endorsed)</h3>
+      <p>Geographic Information Systems (GIS), Cartography, Geospatial Data Science, Environmental Science, Rangeland Inventory and Planning</p>
+    </div>
+
+    <div class="skill-group">
+      <h3>Professional Skills (Endorsed)</h3>
+      <p>Project Management, Strategic Planning, Management, Leadership, Customer Service, Writing</p>
+    </div>
+  </section>
+
+  <section id="certifications" class="section fade-in">
+    <h2>Licenses & Certifications</h2>
+    
+    <article class="certification">
+      <h3>Nature-Based Solutions For Sustainable Development</h3>
+      <span class="issuer">Learning For Nature</span>
+      <span class="period">Issued Sep 2025</span>
+    </article>
+
+    <article class="certification">
+      <h3>Write With AI</h3>
+      <span class="issuer">Sololearn</span>
+      <span class="period">Issued Jun 2025</span>
+      <span class="credential">Credential ID: CC-1BDZAOJW</span>
+    </article>
+
+    <article class="certification">
+      <h3>Introduction to LLMs</h3>
+      <span class="issuer">Sololearn</span>
+      <span class="period">Issued Jun 2025</span>
+      <span class="credential">Credential ID: CC-NX5ZAGUG</span>
+    </article>
+
+    <article class="certification">
+      <h3>SEEA Ecosystem Accounting</h3>
+      <span class="issuer">Statistical Institute For Asia and The Pacific</span>
+      <span class="period">Issued May 2025</span>
+    </article>
+
+    <article class="certification">
+      <h3>Cloud Computing and Algorithms for EO Analyses</h3>
+      <span class="issuer">Faculty of Geo-Information Science and Earth Observation (ITC) of the University of Twente</span>
+      <span class="period">Issued Dec 2024</span>
+    </article>
+
+    <article class="certification">
+      <h3>Web Development for Beginners</h3>
+      <span class="issuer">Simplilearn</span>
+      <span class="period">Issued Dec 2024</span>
+      <span class="credential">Credential ID: 7658647</span>
+    </article>
+
+    <article class="certification">
+      <h3>MEAL Essentials</h3>
+      <span class="issuer">Cornerstone OnDemand</span>
+      <span class="period">Issued Dec 2024</span>
+    </article>
+
+    <article class="certification">
+      <h3>Intro To Programming</h3>
+      <span class="issuer">Kaggle</span>
+      <span class="period">Issued Aug 2024</span>
+    </article>
+
+    <article class="certification">
+      <h3>Introduction to Python</h3>
+      <span class="issuer">Sololearn</span>
+      <span class="period">Issued Jul 2024</span>
+      <span class="credential">Credential ID: CC-2M8UIW3Q</span>
+    </article>
+
+    <article class="certification">
+      <h3>Land Degradation Assessment And Monitoring</h3>
+      <span class="issuer">RCMRD - Regional Centre for Mapping of Resources for Development</span>
+      <span class="period">Issued Feb 2024</span>
+    </article>
+
+    <article class="certification">
+      <h3>Big Data Analysis For Water-Related Applications</h3>
+      <span class="issuer">United Nations University</span>
+      <span class="period">Issued Feb 2024</span>
+    </article>
+
+    <article class="certification">
+      <h3>Spatiotemporal Drought Assessment By Leveraging Google Earth Engine Platform For Water Related Application</h3>
+      <span class="issuer">United Nations University</span>
+      <span class="period">Issued Feb 2024</span>
+    </article>
+
+    <article class="certification">
+      <h3>Mobile App Development - Android App Development for Beginners</h3>
+      <span class="issuer">Simplilearn</span>
+      <span class="period">Issued Feb 2024</span>
+      <span class="credential">Credential ID: 4876271</span>
+    </article>
+
+    <article class="certification">
+      <h3>Introduction to Geospatial Data Analysis with ChatGPT and Google Earth Engine</h3>
+      <span class="issuer">United Nations University</span>
+      <span class="period">Issued Feb 2024</span>
+    </article>
+
+    <article class="certification">
+      <h3>Digital Transformation</h3>
+      <span class="issuer">SkillUp Online</span>
+      <span class="period">Issued Jan 2024</span>
+      <span class="credential">Credential ID: 4795271</span>
+    </article>
+
+    <article class="certification">
+      <h3>Diploma in Soil and Water Conservation Engineering</h3>
+      <span class="issuer">Alison</span>
+      <span class="period">Issued Nov 2023</span>
+      <span class="credential">Credential ID: 2061-16455431</span>
+    </article>
+
+    <article class="certification">
+      <h3>QGIS Desktop 3</h3>
+      <span class="issuer">GEO University</span>
+      <span class="period">2023</span>
+    </article>
+
+    <article class="certification">
+      <h3>Advanced Remote Sensing and GIS Applications for ICM</h3>
+      <span class="issuer">SADC_WaterNet</span>
+      <span class="period">Issued Sep 2023</span>
+    </article>
+
+    <article class="certification">
+      <h3>Geospatial Platform For Territorial Planning</h3>
+      <span class="issuer">egabi Solutions</span>
+      <span class="period">Issued May 2023</span>
+    </article>
+
+    <article class="certification">
+      <h3>Technology, Innovation and Entrepreneurship</h3>
+      <span class="issuer">C-DAC Mohali</span>
+      <span class="period">Issued Mar 2023</span>
+      <span class="credential">Credential ID: 10256</span>
+    </article>
+
+    <article class="certification">
+      <h3>Machine Learning With R Studio</h3>
+      <span class="issuer">Training Course</span>
+    </article>
+
+    <article class="certification">
+      <h3>Data Science With R Programming</h3>
+      <span class="issuer">Training Course</span>
+    </article>
+  </section>
+
+  <section id="experience" class="section fade-in">
+    <h2>Professional Experience</h2>
+
+    <article class="job">
+      <h3>Senior Conservation Officer – Department of Conservation</h3>
+      <span class="period">2019 – Present</span>
+      <ul>
+        <li>Lead and support conservation planning and environmental monitoring initiatives.</li>
+        <li>Apply GIS, EO, and data science techniques for land use, ecosystem, and biodiversity assessments.</li>
+        <li>Support evidence‑based decision‑making through spatial analysis and reporting.</li>
+        <li>Collaborate with government and external stakeholders on conservation and sustainability projects.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <h3>Range Resources Management Officer – Department of Range Resource Management</h3>
+      <span class="period">2015 – 2019</span>
+      <ul>
+        <li>Conduct rangeland inventory, monitoring, and planning using GIS and remote sensing.</li>
+        <li>Analyze vegetation condition, land degradation, and carrying capacity.</li>
+        <li>Support sustainable rangeland management policies and implementation strategies.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="projects" class="section fade-in">
+    <h2>Consultancy & Project Experience</h2>
+    <ul>
+      <li>Delivered geospatial and EO‑based analyses for environmental monitoring and decision support.</li>
+      <li>Developed dashboards, spatial models, and analytical workflows for air quality, water resources, climate indicators, and land use assessment.</li>
+      <li>Applied machine learning techniques for environmental prediction and classification tasks.</li>
+    </ul>
+  </section>
+
+  <section id="portfolio" class="section fade-in">
+    <h2>Portfolio & Proof of Work</h2>
+    <div class="portfolio-links">
+      <a href="https://github.com/ocaes" target="_blank" class="portfolio-link">
+        <i class="fa-brands fa-github"></i> GitHub Projects
+      </a>
+      <a href="https://rpubs.com/fanta" target="_blank" class="portfolio-link">
+        <i class="fa-solid fa-code"></i> RPubs Publications
+      </a>
+      <a href="https://tsitsomafantiri.blogspot.com/" target="_blank" class="portfolio-link">
+        <i class="fa-brands fa-blogger"></i> Technical Blog
+      </a>
+    </div>
+  </section>
+
+  <section id="education" class="section fade-in">
+    <h2>Education</h2>
+    <p>BSc in Environmental Science – University of X (Year)</p>
+  </section>
+
+  <section id="affiliations" class="section fade-in">
+    <h2>Professional Affiliations & Interests</h2>
+    <ul>
+      <li>Conservation Science & Environmental Policy</li>
+      <li>Geospatial Technologies & Earth Observation</li>
+      <li>Climate Change, Ecosystem Services, and Sustainable Development</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="social-media">
+    <a href="https://www.facebook.com/Ocaes" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
+    <a href="https://x.com/ocaes_lso" target="_blank"><i class="fa-brands fa-x-twitter"></i> X</a>
+    <a href="https://heylink.me/tsitsomafantiri/" target="_blank"><i class="fa-solid fa-link"></i> HeyLink.me</a>
+  </div>
+  <p>&copy; 2026 TSITSO MAFANTIRI. All rights reserved.</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Theme toggle
+const themeToggleBtn = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+
+function applyTheme(theme) {
+    document.body.classList.toggle('dark', theme === 'dark');
+    const icon = themeToggleBtn.querySelector('i');
+    icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
+
+applyTheme(currentTheme);
+
+themeToggleBtn.addEventListener('click', () => {
+    const newTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+
+// Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const mainNav = document.getElementById('main-nav');
+
+menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+    const icon = menuToggle.querySelector('i');
+    icon.className = mainNav.classList.contains('active') ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+});
+
+// Close mobile menu on link click
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            mainNav.classList.remove('active');
+            menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+        }
+    });
+});
+
+// Active nav link based on scroll
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPos = window.scrollY + 150;
+
+    sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        
+        if (scrollPos >= top && scrollPos < top + height) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNavLink);
+window.addEventListener('load', updateActiveNavLink);
+
+// Smooth scroll with offset
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
+        if (target) {
+            const headerHeight = document.querySelector('.site-header').offsetHeight;
+            const targetPos = target.offsetTop - headerHeight - 10;
+            
+            window.scrollTo({
+                top: targetPos,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Fade-in animations
+const observerOptions = {
+    root: null,
+    threshold: 0.1
+};
+
+function revealSection(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}
+
+const sections = document.querySelectorAll('.fade-in');
+
+if ('IntersectionObserver' i
